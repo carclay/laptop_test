@@ -1,0 +1,20 @@
+version: '3.2'
+
+volumes:
+  home-dir:
+
+services:
+  app:
+    restart: always
+    image: registry.gitlab.com/httpx/php/php-cli:latest
+    user: "${USER_ID:-1000}:${GROUP_ID:-1000}"
+    volumes:
+    - /etc/passwd:/etc/passwd:ro
+    - /etc/group:/etc/group:ro
+    - .:/app:rw
+    - home-dir:/home/user
+    command: keep-alive.sh
+    environment:
+      APP_ENV: local
+      APP_DEBUG: 'true'
+      HOME: /home/user
