@@ -24,19 +24,19 @@ final class FactoryInterfaceTest extends TestCase
     /**
      * @throws \ReflectionException
      */
-    public function test_It_has_createNew_method_returns_object(): void
+    public function test_It_has_createNew_method_with_return_type_is_not_declared(): void
     {
         $method = 'createNew';
 
         $this->assertTrue($this->class->hasMethod($method));
 
         /**
-         * @var \ReflectionNamedType
+         * @var \ReflectionNamedType|null
          */
         $returnType = $this->class->getMethod($method)->getReturnType();
 
         $this->assertTrue(
-            null !== $returnType && 'object' === $returnType->getName(),
+            null === $returnType,
             'Method returns invalid type'
         );
     }
