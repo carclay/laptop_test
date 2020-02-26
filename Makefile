@@ -83,4 +83,4 @@ test-phpcs: restart ## Execute phpunit tests
 	$(docker_compose_bin) exec "$(CONTAINER_NAME)" composer test:phpcs
 
 fix-phpcs: restart ## Execute phpunit tests
-	$(docker_compose_bin) exec "$(CONTAINER_NAME)" composer test:phpcs
+	$(docker_compose_bin) exec "$(CONTAINER_NAME)" composer fix:phpcs

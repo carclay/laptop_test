@@ -1,0 +1,6 @@
+parameters:
+    sets:
+        - 'symfony'
+    paths:
+        - 'src'
+        - 'test'

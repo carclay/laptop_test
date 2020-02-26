@@ -31,8 +31,8 @@
     "scripts": {
         "test:phpunit": "vendor/bin/phpunit",
         "test:phpstan": "vendor/bin/phpstan analyse -l 8 src test --memory-limit=256M",
-        "test:phpcs": "vendor/bin/ecs check src --set symfony",
-        "fix:phpcs": "vendor/bin/ecs check src --set symfony --fix"
+        "test:phpcs": "vendor/bin/ecs check",
+        "fix:phpcs": "vendor/bin/ecs check --fix"
     },
     "config": {
         "discard-changes": true,
