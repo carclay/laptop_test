@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-
 namespace LaptopRu\Component\Resource\test\Model;
-
 
 use LaptopRu\Component\Resource\Model\ToggleableTrait;
 use PHPUnit\Framework\TestCase;
@@ -21,7 +19,7 @@ final class ToggleableTraitTest extends TestCase
     public function setUp(): void
     {
         $this->trait = new \ReflectionClass(ToggleableTrait::class);
-        $this->class = new class {
+        $this->class = new class() {
             use ToggleableTrait;
         };
     }
@@ -38,10 +36,10 @@ final class ToggleableTraitTest extends TestCase
     {
         $getMethod = 'isEnabled';
 
-        $this->assertTrue($this->trait->hasMethod($getMethod), sprintf("Method %s not exists", $getMethod));
+        $this->assertTrue($this->trait->hasMethod($getMethod), sprintf('Method %s not exists', $getMethod));
 
         /**
-         * @var \ReflectionNamedType $returnType
+         * @var \ReflectionNamedType
          */
         $returnType = $this->trait->getMethod($getMethod)->getReturnType();
 
@@ -52,32 +50,32 @@ final class ToggleableTraitTest extends TestCase
 
         $setMethod = 'setEnabled';
 
-        $this->assertTrue($this->trait->hasMethod($setMethod), sprintf("Method %s not exists", $getMethod));
+        $this->assertTrue($this->trait->hasMethod($setMethod), sprintf('Method %s not exists', $getMethod));
 
         $parameters = $this->trait->getMethod($setMethod)->getParameters();
 
-        $this->assertTrue(1 === count($parameters), sprintf("Method %s must have 1 parameter", $setMethod));
+        $this->assertTrue(1 === count($parameters), sprintf('Method %s must have 1 parameter', $setMethod));
 
         [$parameter,] = $parameters;
 
         /**
-         * @var \ReflectionNamedType $parameterType
+         * @var \ReflectionNamedType
          */
         $parameterType = $parameter->getType();
 
         $this->assertTrue(
             'bool' === $parameterType->getName(),
-            sprintf("Method %s have invalid type of parameter", $setMethod)
+            sprintf('Method %s have invalid type of parameter', $setMethod)
         );
 
         $data = [
             'boolean:true' => true,
-            'boolean:false' => false
+            'boolean:false' => false,
         ];
 
         foreach ($data as $className => $argument) {
             $this->class->$setMethod($argument);
-            $this->assertTrue($this->class->$getMethod() === $argument, sprintf("Invalid set for data type %s", $className));
+            $this->assertTrue($this->class->$getMethod() === $argument, sprintf('Invalid set for data type %s', $className));
         }
     }
 
@@ -85,25 +83,25 @@ final class ToggleableTraitTest extends TestCase
     {
         $method = 'enable';
 
-        $this->assertTrue($this->trait->hasMethod($method), sprintf("Method %s not exists", $method));
+        $this->assertTrue($this->trait->hasMethod($method), sprintf('Method %s not exists', $method));
 
         $this->class->$method();
-        $this->assertTrue($this->class->isEnabled(), sprintf("Invalid set %s", $method));
+        $this->assertTrue($this->class->isEnabled(), sprintf('Invalid set %s', $method));
     }
 
     public function test_It_toggle_disable(): void
     {
         $method = 'disable';
 
-        $this->assertTrue($this->trait->hasMethod($method), sprintf("Method %s not exists", $method));
+        $this->assertTrue($this->trait->hasMethod($method), sprintf('Method %s not exists', $method));
 
         $this->class->$method();
-        $this->assertFalse($this->class->isEnabled(), sprintf("Invalid set %s", $method));
+        $this->assertFalse($this->class->isEnabled(), sprintf('Invalid set %s', $method));
     }
 
     public function test_It_is_enabled_by_default(): void
     {
-        $this->class = new class {
+        $this->class = new class() {
             use ToggleableTrait;
         };
 

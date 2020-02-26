@@ -2,13 +2,10 @@
 
 declare(strict_types=1);
 
-
 namespace LaptopRu\Component\Resource\test\Model;
-
 
 use LaptopRu\Component\Resource\Model\ToggleableInterface;
 use PHPUnit\Framework\TestCase;
-
 
 final class ToggleableInterfaceTest extends TestCase
 {
@@ -31,10 +28,10 @@ final class ToggleableInterfaceTest extends TestCase
     {
         $method = 'isEnabled';
 
-        $this->assertTrue($this->class->hasMethod($method), "Method not exists");
+        $this->assertTrue($this->class->hasMethod($method), 'Method not exists');
 
         /**
-         * @var \ReflectionNamedType $returnType
+         * @var \ReflectionNamedType
          */
         $returnType = $this->class->getMethod($method)->getReturnType();
 
@@ -42,7 +39,6 @@ final class ToggleableInterfaceTest extends TestCase
             null !== $returnType && 'bool' === $returnType->getName(),
             'Method returns invalid type'
         );
-
     }
 
     /**
@@ -52,22 +48,22 @@ final class ToggleableInterfaceTest extends TestCase
     {
         $method = 'setEnabled';
 
-        $this->assertTrue($this->class->hasMethod($method), "Method not exists");
+        $this->assertTrue($this->class->hasMethod($method), 'Method not exists');
 
         $parameters = $this->class->getMethod($method)->getParameters();
 
-        $this->assertTrue(1 === count($parameters), "Method must have 1 parameter");
+        $this->assertTrue(1 === count($parameters), 'Method must have 1 parameter');
 
         [$parameter,] = $parameters;
 
         /**
-         * @var \ReflectionNamedType $parameterType
+         * @var \ReflectionNamedType
          */
         $parameterType = $parameter->getType();
 
         $this->assertTrue(
             'bool' === $parameterType->getName(),
-            "Method have invalid type of parameter"
+            'Method have invalid type of parameter'
             );
     }
 
@@ -75,14 +71,13 @@ final class ToggleableInterfaceTest extends TestCase
     {
         $method = 'enable';
 
-        $this->assertTrue($this->class->hasMethod($method), "Method not exists");
+        $this->assertTrue($this->class->hasMethod($method), 'Method not exists');
     }
 
     public function test_It_has_disable_method(): void
     {
         $method = 'disable';
 
-        $this->assertTrue($this->class->hasMethod($method), "Method not exists");
+        $this->assertTrue($this->class->hasMethod($method), 'Method not exists');
     }
-
 }

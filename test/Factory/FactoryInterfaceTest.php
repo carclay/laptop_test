@@ -2,13 +2,10 @@
 
 declare(strict_types=1);
 
-
 namespace LaptopRu\Component\Resource\test\Factory;
-
 
 use LaptopRu\Component\Resource\Factory\FactoryInterface;
 use PHPUnit\Framework\TestCase;
-
 
 final class FactoryInterfaceTest extends TestCase
 {
@@ -34,7 +31,7 @@ final class FactoryInterfaceTest extends TestCase
         $this->assertTrue($this->class->hasMethod($method));
 
         /**
-         * @var \ReflectionNamedType $returnType
+         * @var \ReflectionNamedType
          */
         $returnType = $this->class->getMethod($method)->getReturnType();
 

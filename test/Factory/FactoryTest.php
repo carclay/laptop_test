@@ -2,14 +2,11 @@
 
 declare(strict_types=1);
 
-
 namespace LaptopRu\Component\Resource\test\Factory;
-
 
 use LaptopRu\Component\Resource\Factory\Factory;
 use LaptopRu\Component\Resource\Factory\FactoryInterface;
 use PHPUnit\Framework\TestCase;
-
 
 final class FactoryTest extends TestCase
 {

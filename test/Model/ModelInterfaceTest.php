@@ -2,13 +2,10 @@
 
 declare(strict_types=1);
 
-
 namespace LaptopRu\Component\Resource\test\Model;
-
 
 use LaptopRu\Component\Resource\Model\ModelInterface;
 use PHPUnit\Framework\TestCase;
-
 
 final class ModelInterfaceTest extends TestCase
 {

@@ -2,14 +2,11 @@
 
 declare(strict_types=1);
 
-
 namespace LaptopRu\Component\Resource\test\Model;
-
 
 use LaptopRu\Component\Resource\Model\ModelInterface;
 use LaptopRu\Component\Resource\Model\NameableModelInterface;
 use PHPUnit\Framework\TestCase;
-
 
 final class NameableModelInterfaceTest extends TestCase
 {
