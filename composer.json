@@ -12,10 +12,11 @@
         "php": "^7.4"
     },
     "require-dev": {
+        "ergebnis/phpstan-rules": "0.14.3",
+        "phpstan/phpstan": "0.12.8",
         "phpunit/phpunit": "8.5.2",
         "sempro/phpunit-pretty-print": "1.2.1",
-        "phpstan/phpstan": "0.12.8",
-        "ergebnis/phpstan-rules": "0.14.3"
+        "symplify/easy-coding-standard": "7.2.2"
     },
     "autoload": {
         "psr-4": {
@@ -29,9 +30,12 @@
     },
     "scripts": {
         "test:phpunit": "vendor/bin/phpunit",
-        "test:phpstan": "vendor/bin/phpstan analyse -l 8 src test --memory-limit=256M"
+        "test:phpstan": "vendor/bin/phpstan analyse -l 8 src test --memory-limit=256M",
+        "test:phpcs": "vendor/bin/ecs check src --set symfony",
+        "fix:phpcs": "vendor/bin/ecs check src --set symfony --fix"
     },
     "config": {
-        "discard-changes": true
+        "discard-changes": true,
+        "sort-packages": true
     }
 }

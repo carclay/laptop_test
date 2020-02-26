@@ -62,15 +62,25 @@ restart: up ## Restart all started for development containers
 shell: up ## Start shell into application container
 	$(docker_compose_bin) exec "$(CONTAINER_NAME)" /bin/sh
 
-install: up ## Install application dependencies into application container
+root: up ## Start shell into application container with root
+	$(docker_compose_bin) exec -u root "$(CONTAINER_NAME)" /bin/sh
+
+install: restart ## Install application dependencies into application container
 	$(docker_compose_bin) exec "$(CONTAINER_NAME)" composer install --no-interaction --ansi --no-suggest
 
 init: install ## Make full application initialization (install, seed, build assets, etc)
 
-test: test-phpunit test-phpstan ## Execute application tests
+test: test-phpunit test-phpstan test-phpcs ## Execute application tests
 
-test-phpstan: up ## Execute phpstan tests
+test-phpstan: restart ## Execute phpstan tests
 	$(docker_compose_bin) exec "$(CONTAINER_NAME)" composer test:phpstan
 
-test-phpunit: up ## Execute phpunit tests
+test-phpunit: restart ## Execute phpunit tests
+	$(docker_compose_bin) exec -u root "$(CONTAINER_NAME)" docker-php-ext-enable xdebug
 	$(docker_compose_bin) exec "$(CONTAINER_NAME)" composer test:phpunit
+
+test-phpcs: restart ## Execute phpunit tests
+	$(docker_compose_bin) exec "$(CONTAINER_NAME)" composer test:phpcs
+
+fix-phpcs: restart ## Execute phpunit tests
+	$(docker_compose_bin) exec "$(CONTAINER_NAME)" composer test:phpcs
